@@ -1,0 +1,77 @@
+---
+title: "Class Dashboard Example"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(tidyverse)
+library(rcartocolor)
+library(plotly)
+```
+
+About {.sidebar}
+============
+## About
+Your text here. You can use markdown syntax, including [links](http://blah.com), *italics*, **bolding**, etc.
+
+# Car stuff {data-icon="fa-car"}
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Chart A
+
+```{r plot1}
+
+p <- ggplot(mtcars, aes(mpg, disp)) +
+  geom_point(aes(color = wt)) +
+  #geom_smooth(color = "gray70") +
+  theme_minimal() +
+  scale_color_viridis_c()
+
+ggplotly(p)
+
+```
+
+Column {data-width=350, .tabset}
+-----------------------------------------------------------------------
+
+### Chart B
+
+```{r plot2}
+
+ggplot(mtcars, aes(gear, hp, fill = wt)) +
+   geom_col(width = 0.60, 
+            alpha = 0.6) +
+   scale_fill_carto_c(palette = "Burg") +
+   theme_minimal()
+
+```
+
+> Here's a fancy bar graph showing the relation between the number of gears and horse power, colored by vehicle weight. hahdaihdioahdiahdioa hioahdoisah haodihsaiodaiohdaio hadiaoihdiaoh dhaihdiash dahihdaioh ah dahoihd anadihdiaoh d ahidha blah blah blah.
+
+### Chart C
+
+```{r plot3}
+
+ggplot(mpg, aes(displ, cty)) +
+  geom_point(aes(color = drv)) +
+  geom_smooth() +
+  theme_minimal()
+
+```
+
+# Other stuff {data-icon="fa-university"}
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+```{r plot4}
+
+
+```
+
